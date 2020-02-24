@@ -4,9 +4,9 @@ This project is a simple chat application to help you manage your customers.
 
 ### Screenshots
 
-![login](./screenshots/login.jpg)
-![chat](./screenshots/chat.jpg)
-![settings](./screenshots/settings.jpg)
+![login](https://github.com/sheidaee/chat-app/blob/master/screenshots/login.JPG)
+![chat](https://github.com/sheidaee/chat-app/blob/master/screenshots/chat.JPG)
+![settings](https://github.com/sheidaee/chat-app/blob/master/screenshots/settings.JPG)
 
 ## Application features
 
