@@ -1,0 +1,55 @@
+@import "../../../../sass/abstracts/theme";
+
+.settings {
+  height: 100vh;
+
+  @include themify($themes) {
+    background: themed('bodyBgColor');
+  }
+  .EditBtn {
+    cursor: pointer;
+    margin-left: 0.8rem;
+  }
+
+  .formCaption {
+    margin-bottom: 1rem;
+  }
+
+  .formData {
+    padding-bottom: 1rem;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & > div {
+      margin-bottom: 1rem;
+      @include themify($themes) {
+        border-bottom: .1rem solid themed('settingsItemBorderColor');
+      }
+    }
+  }
+
+  .actionBar button:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  .form {
+    display: flex;
+    justify-content: center;
+    fieldset {
+      width: 40%;
+      background-color: rgba(255, 255, 255, 0.7);
+      @include themify($themes) {
+        // border-bottom: .1rem solid themed('settingsItemBorderColor');
+        box-shadow: 0.1rem 0.1rem 1rem 0 themed('settingsFormShadowColor');
+      }
+      border-radius: .6rem;
+      padding: 1.4rem;
+      margin: 6rem 0;
+    }
+  }
+}

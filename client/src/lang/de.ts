@@ -1,0 +1,28 @@
+const de = {
+  welcome: 'Willkommen in der Chat-App',
+  username: 'Benutzername',
+  usernameTaken: 'Benutzername genommen',
+  signIn: 'Anmelden',
+  typePlaceHolder: 'Nachricht eingeben',
+  typing: 'tippen',
+  chat: 'Chat',
+  settings: 'Einstellungen',
+  chooseAChat: 'Wähle einen Chat!',
+  isTyping: 'tippt',
+  send: 'Senden',
+  interfaceColor: 'Schnittstellenfarbe',
+  light: 'Licht',
+  dark: 'Dunkel',
+  clockDisplay: 'Uhrzeitanzeige',
+  twelveHours: '12 Stunden ',
+  twentyFourHours: '24 Stunden ',
+  sendMessageOnCtrlEnter: 'Nachricht mit STRG + EINGABETASTE senden',
+  on: 'On',
+  off: 'Aus',
+  language: 'Sprache',
+  english: 'Englisch',
+  german: 'Deutsch',
+  resetToDefault: 'Auf Standardeinstellungen zurücksetzen',
+};
+
+export default de;

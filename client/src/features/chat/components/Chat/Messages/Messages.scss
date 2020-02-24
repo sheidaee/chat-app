@@ -1,0 +1,152 @@
+@import "../../../../../sass/abstracts/mixins";
+@import "../../../../../sass/abstracts/theme";
+
+/* thread container */
+.threadContainer {
+  display: flex;
+  justify-content: center;
+	flex-grow: 1;
+	overflow-y: scroll;
+	position: relative;
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0.6rem rgba(0, 0, 0, 0.3);
+    background-color: #cac8ee;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    background-color: green;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #484d79;
+  }
+
+  .thread {
+    position: relative;
+    width: 50%;
+    min-height: 80rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    @include themify($themes) {
+      color: themed('threadContainerThreadColor');
+    }
+
+    @include respond(tab-land) {
+      width: 100%;
+    }
+  }
+}
+/* END thread container */
+
+@keyframes show {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	};
+}
+
+
+/* message container */
+.messageContainer {
+	display: flex;
+	justify-content: flex-start;
+	min-height: 5rem;
+	margin: 1rem 1.5rem;
+	animation: .65s ease-out 0s show;
+
+
+  .time {
+    order: 1;
+  }
+
+  .data {
+    order: 2;
+    height: 100%;
+    margin-left: 2.5rem;
+  }
+
+  .name {
+    margin-top: 0.5rem;
+    text-align: right;
+  }
+
+  .message {
+    @include themify($themes) {
+      background: themed('threadContainerMessageBgColor');
+      color: themed('threadContainerMessageColor');
+    }
+    border-radius: 0.5rem;
+    border-top-left-radius: 0;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 1rem 1.5rem;
+    position: relative;
+  }
+
+  .message::before {
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    @include themify($themes) {
+      border-right-color: themed('threadContainerMessageBeforeBorderColor');
+      border-top-color: themed('threadContainerMessageBeforeBorderColor');
+    }
+    border-style: solid;
+    border-width: 0.4rem;
+    content: '';
+    height: 0;
+    left: -0.7rem;
+    position: absolute;
+    top: 0;
+    width: 0;
+  }
+
+  &.right {
+    text-align: right;
+    justify-content: flex-end;
+
+
+    .time {
+      order: 2;
+      margin-left: 2.5rem;
+    }
+
+    .data {
+      margin-left: 0;
+      order: 1;
+    }
+
+    .name {
+      display: none;
+    }
+
+    .message {
+      @include themify($themes) {
+        background: themed('threadContainerMessageRightBgColor');
+        color: themed('threadContainerMessageRightColor');
+      }
+      border-top-right-radius: 0;
+      border-top-left-radius: 0.5rem;
+
+      &::before {
+        @include themify($themes) {
+          border-top-color: themed('threadContainerMessageRightBeforeBorderColor');
+          border-left-color: themed('threadContainerMessageRightBeforeBorderColor');
+        }
+        border-right-color: transparent;
+        left: auto;
+        right: -0.7rem;
+      }
+    }
+  }
+}
+/* END message container */
+
+.typingUser {
+	text-align: right;
+	margin: 1rem 1.5rem;
+}

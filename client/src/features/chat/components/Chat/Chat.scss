@@ -1,0 +1,44 @@
+@import "../../../../sass/abstracts/theme";
+
+.chatContainer {
+  display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	height: 100%;
+	width: 100%;
+  @include themify($themes) {
+    color: themed('chatContainerColor');
+    background: themed('bodyBgColor');
+  }
+}
+
+/* chat-room container */
+.chatRoomContainer {
+  height: 100%;
+  flex-basis: 100%;
+  // width: 76.25%;
+}
+
+/* END chat-room container */
+
+@media screen and (max-width: 510px) {
+	.chatRoomContainer {
+		width: 100%;
+	}
+}
+
+/* chat-room */
+.chatRoom {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+  width: 100%;
+
+  &.choose {
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+  }
+}
+/* END chat-room */

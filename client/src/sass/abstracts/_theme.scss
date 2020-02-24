@@ -1,0 +1,157 @@
+/*
+ * Theme definitions
+ */
+
+$default-theme : (
+    bodyBgColor: #dcddf5,
+
+    /*  toolbar */
+    linkColor: white,
+    toolbarBgColor: #5d5d8a,
+    toolbarShadowColor: rgba(225, 225, 225, 0.7),
+    menuItemLinkBgColor: #54547d,
+    menuItemLinkBorderColor: #54547d,
+    menuItemLinkActiveBorderColor: #40A4C8,
+    menuItemLinkColor: #fff,
+    menuItemLinkMessageCounterColor: #fff,
+    menuItemLinkMessageCounterBgColor: rgba(207, 215, 212, 0.5),
+    menuItemLinkMessageCounterShadowColor: #5d5d8a,
+    menuItemLinkMessageCounterBlinkBgColor: #ba000d,
+
+
+    /* chat container */
+    chatContainerColor: #cac8ee,
+
+    /* message */
+    threadContainerThreadColor: #b3b2ca,
+    threadContainerMessageBgColor: #fff,
+    threadContainerMessageColor: #b3b2ca,
+    threadContainerMessageBeforeBorderColor: #fff,
+
+    threadContainerMessageRightBgColor: #89a1fc,
+    threadContainerMessageRightColor: #fff,
+    threadContainerMessageRightBeforeBorderColor: #89a1fc,
+
+    /* message input */
+    messageInputBgColor: #fff,
+    messageInputColor: #484d79,
+    messageInputSendBtnColor: #fff,
+    messageInputSendBtnBgColor: #3e3e5e,
+    messageInputSendBtnDisabledBgColor: #5d5d8a,
+
+    /* settings */
+    settingsItemBorderColor: #f0e9e9,
+    settingsFormShadowColor: #9d9d9d,
+);
+
+$themes: (
+  light: (
+    bodyBgColor: #dcddf5,
+
+    /*  toolbar */
+    linkColor: white,
+    toolbarBgColor: #5d5d8a,
+    toolbarShadowColor: rgba(225, 225, 225, 0.7),
+    menuItemLinkBgColor: #54547d,
+    menuItemLinkBorderColor: #54547d,
+    menuItemLinkActiveBorderColor: #40A4C8,
+    menuItemLinkColor: #fff,
+    menuItemLinkMessageCounterColor: #fff,
+    menuItemLinkMessageCounterBgColor: rgba(207, 215, 212, 0.5),
+    menuItemLinkMessageCounterShadowColor: #5d5d8a,
+    menuItemLinkMessageCounterBlinkBgColor: #ba000d,
+
+
+    /* chat container */
+    chatContainerColor: #cac8ee,
+
+    /* message */
+    threadContainerThreadColor: #b3b2ca,
+    threadContainerMessageBgColor: #fff,
+    threadContainerMessageColor: #b3b2ca,
+    threadContainerMessageBeforeBorderColor: #fff,
+
+    threadContainerMessageRightBgColor: #89a1fc,
+    threadContainerMessageRightColor: #fff,
+    threadContainerMessageRightBeforeBorderColor: #89a1fc,
+
+    /* message input */
+    messageInputBgColor: #fff,
+    messageInputColor: #484d79,
+    messageInputSendBtnColor: #fff,
+    messageInputSendBtnBgColor: #3e3e5e,
+    messageInputSendBtnDisabledBgColor: #5d5d8a,
+
+    /* settings */
+    settingsItemBorderColor: #f0e9e9,
+    settingsFormShadowColor: #9d9d9d,
+  ),
+  dark: (
+    bodyBgColor: #1b191b,
+
+    /*  toolbar */
+    linkColor: white,
+    toolbarBgColor: #232223,
+    toolbarShadowColor: rgba(65, 63, 63, 0.7),
+    menuItemLinkBgColor: #36363f,
+    menuItemLinkBorderColor: #36363f,
+    menuItemLinkActiveBorderColor: #3a474c,
+    menuItemLinkColor: #fff,
+    menuItemLinkMessageCounterColor: #fff,
+    menuItemLinkMessageCounterBgColor: rgba(207, 215, 212, 0.5),
+    menuItemLinkMessageCounterShadowColor: #232223,
+    menuItemLinkMessageCounterBlinkBgColor: #ba000d,
+
+
+    /* chat container */
+    chatContainerColor: #cac8ee,
+
+    /* message */
+    threadContainerThreadColor: #b3b2ca,
+    threadContainerMessageBgColor: #fff,
+    threadContainerMessageColor: #8f8f8f,
+    threadContainerMessageBeforeBorderColor: #fff,
+
+    threadContainerMessageRightBgColor: #4c4f5b,
+    threadContainerMessageRightColor: #fff,
+    threadContainerMessageRightBeforeBorderColor: #4c4f5b,
+
+    /* message input */
+    messageInputBgColor: #fff,
+    messageInputColor: #484d79,
+    messageInputSendBtnColor: #fff,
+    messageInputSendBtnBgColor: #3e3e5e,
+    messageInputSendBtnDisabledBgColor: #5d5d8a,
+
+    /* settings */
+    settingsItemBorderColor: #f0e9e9,
+    settingsFormShadowColor: #9d9d9d,
+  )
+);
+
+/*
+ * Implementation of themes
+ */
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  $checkVar: map-get($theme-map, $key);
+
+  @if ($checkVar == null) {
+    $checkVar: map-get($default-theme, $key)
+  }
+
+  @return $checkVar;
+}

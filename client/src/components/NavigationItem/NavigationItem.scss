@@ -1,0 +1,46 @@
+@import "../../sass/abstracts/theme";
+
+.NavigationItem {
+  margin: 0;
+  display: flex;
+  height: 100%;
+  width: auto;
+  align-items: center;
+  height: 6.4rem;
+
+  a {
+    @include themify($themes) {
+      color: themed('menuItemLinkColor');
+    }
+    height: 100%;
+    padding: 1.6rem 4rem;
+    border-bottom: 0.4rem solid transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover,
+    &:active,
+    &.active {
+      @include themify($themes) {
+        background-color: themed('menuItemLinkBgColor');
+        border-bottom-color: themed('menuItemLinkBorderColor');
+        color: themed('menuItemLinkColor');
+      }
+      border-bottom-width: 0.4rem;
+      border-bottom-style: solid;
+    }
+
+    &:active,
+    &.active {
+      @include themify($themes) {
+        border-bottom-color: themed('menuItemLinkActiveBorderColor');
+      }
+    }
+
+    span {
+      display: inline-block;
+      margin-left: .8rem;
+    }
+  }
+}
