@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot 1`] = `
+<div>
+  <div
+    class="threadContainer"
+    data-testid="threadContainer"
+  >
+    <div
+      class="thread"
+    />
+  </div>
+</div>
+`;

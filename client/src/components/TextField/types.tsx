@@ -9,4 +9,5 @@ export interface Props {
   autoComplete?: string;
   placeholder?: string;
   callback?: any;
+  'data-testid'?: string;
 }

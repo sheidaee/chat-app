@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot 1`] = `
+<div>
+  <div
+    class="messageInput"
+  >
+    <form
+      class="messageForm"
+      data-testid="messageForm"
+    >
+      <textarea
+        autocomplete="off"
+        class="bp3-input formControl"
+        data-testid="message"
+        id="message"
+        name="message"
+        placeholder="Enter message"
+      />
+      <button
+        class="bp3-button bp3-disabled sendBtn"
+        data-testid="sendMessageBtn"
+        disabled=""
+        tabindex="-1"
+        type="submit"
+      >
+        <span
+          class="bp3-button-text"
+        >
+          Send
+        </span>
+      </button>
+    </form>
+  </div>
+</div>
+`;

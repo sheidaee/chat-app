@@ -28,8 +28,8 @@ const ProtectedRoute = ({ component: Component, ...rest }: any) => {
 const RouteList = ({ routes }: Props) => (
   <>
     <Switch>
-      {routes.map(({ path, component, exact }: AppRoute) => (
-        <Route key={path} path={path} component={component} exact={exact} />
+      {routes.map(({ path, Component, exact, cprops }: AppRoute) => (
+        <Route key={path} path={path} component={(props: any) => <Component {...props} {...cprops} />} exact={exact} />
       ))}
       <ProtectedRoute path={CHAT_PAGE} component={Chat} />
       <ProtectedRoute path={SETTINGS_PAGE} component={Settings} />

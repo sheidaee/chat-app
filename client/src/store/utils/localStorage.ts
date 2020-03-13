@@ -1,7 +1,7 @@
 export const loadState = () => {
   // for user privacy - if it was disabled
   try {
-    const serializedState = localStorage.getItem('state');
+    const serializedState = localStorage.getItem('chatAppState');
 
     if (serializedState === null) {
       return undefined;
@@ -20,7 +20,7 @@ type chat = {
 export const saveState = (state: chat) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState);
+    localStorage.setItem('chatAppState', serializedState);
   } catch (err) {
     // Catch any errors to prevent crash app
     // Ignore write errors

@@ -29,7 +29,11 @@ const Messages = () => {
   const convertToTwentyFourHorse = clockDisplay === '2';
 
   return (
-    <div className="threadContainer" ref={containerRef}>
+    <div
+      className="threadContainer"
+      ref={containerRef}
+      data-testid="threadContainer"
+    >
       <div className="thread">
         {chats[activeChat] &&
           chats[activeChat].messages.map(
@@ -39,6 +43,7 @@ const Messages = () => {
                   key={id}
                   className={`messageContainer ${sender === user.id &&
                     'right'}`}
+                  data-testid="messageContainer"
                 >
                   <div className="time">
                     {formatTime(time, convertToTwentyFourHorse)}

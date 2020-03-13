@@ -37,9 +37,11 @@ export const RenderText = CustomInputComponent((input: any, rest: any) => (
   <TextField {...input} {...rest} />
 ));
 
-export const RenderSelect = CustomInputComponent((input: any, rest: any) => (
-  <SelectField {...input} items={rest.items} />
-));
+export const RenderSelect = CustomInputComponent((input: any, rest: any) => {
+  const { items, 'data-testid': dataTextid } = rest;
+
+  return <SelectField {...input} items={items} data-testid={dataTextid} />;
+});
 
 export const RenderRadioGroup = CustomInputComponent(
   (input: any, rest: any) => {

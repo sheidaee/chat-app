@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaRocketchat } from 'react-icons/fa';
-import { IoIosSettings } from 'react-icons/io';
 import { useLocation } from 'react-router-dom';
 
 import NavigationItems from '../../../../components/NavigationItems';
 import useTranslation from '../../../../hooks/useTranslation';
 import { chatOperations } from '../..';
 import { withMemo } from '../../../../utilities/utility';
-import { CHAT_PAGE, SETTINGS_PAGE } from '../../../../utilities/constants';
-
+import { CHAT_PAGE } from '../../../../utilities/constants';
+import navigationContents from './navigationContents';
 import './ChatToolbar.scss';
 
 const ChatToolbar = (props: any) => {
@@ -36,29 +34,15 @@ const ChatToolbar = (props: any) => {
 
   const messageCounterClass = unreadMessages ? 'blinking' : 'no-blinking';
 
-  const navigationContents: any = [
-    {
-      Icon: FaRocketchat,
-      children: (
-        <>
-          {t('chat')}
-          <span className={`messageCounter ${messageCounterClass}`}>
-            {unreadMessages}
-          </span>
-        </>
-      ),
-      link: CHAT_PAGE,
-    },
-    {
-      Icon: IoIosSettings,
-      children: t('settings'),
-      link: SETTINGS_PAGE,
-    },
-  ];
-
   return (
-    <div className="toolbar">
-      <NavigationItems navigationContents={navigationContents} />
+    <div className="toolbar" data-testid="toolbar">
+      <NavigationItems
+        navigationContents={navigationContents({
+          messageCounterClass,
+          unreadMessages,
+          t,
+        })}
+      />
     </div>
   );
 };

@@ -23,7 +23,7 @@ const Chat = () => {
           </div>
         ) : (
           <div className="chatRoom choose">
-            <h3>{t('chooseAChat!')}</h3>
+            <h3>{t('chooseAChat')}</h3>
           </div>
         )}
       </div>

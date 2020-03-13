@@ -1,5 +1,5 @@
 export interface Props {
-  navigationContents: [];
+  navigationContents: any;
 }
 
 export interface NavigationItemP {

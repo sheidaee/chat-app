@@ -15,11 +15,13 @@ function TextField({
   placeholder,
   onKeyUp,
   callback,
+  'data-testid': dataTestid,
 }: Props) {
   return (
     <input
       className={`${Classes.INPUT} ${className}`}
       dir="auto"
+      data-testid={dataTestid}
       {...{
         id,
         name,

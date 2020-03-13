@@ -20,7 +20,9 @@ const rootReducer = combineReducers<ApplicationState>({
 export const createRootReducer = () => rootReducer;
 //----------------
 
-export default function configureStore(): Store<ApplicationState> {
+export default function configureStore(
+  initialState: any = {}
+): Store<ApplicationState> {
   let middleware = applyMiddleware(thunkMiddleware, createLogger(false));
 
   // create the composing function for our middle wares
@@ -34,6 +36,7 @@ export default function configureStore(): Store<ApplicationState> {
     app: {
       ...chatInitialState,
       settings: prevState ? prevState.settings : initialSettings,
+      ...initialState,
     },
   };
 

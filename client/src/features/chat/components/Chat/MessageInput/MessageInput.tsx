@@ -98,7 +98,11 @@ const MessageInput = () => {
 
   return (
     <div className="messageInput">
-      <form onSubmit={handleSubmit} className="messageForm">
+      <form
+        onSubmit={handleSubmit}
+        className="messageForm"
+        data-testid="messageForm"
+      >
         <TextAreaField
           name="message"
           id="message"
@@ -109,8 +113,14 @@ const MessageInput = () => {
           onKeyUp={handleKeyUp}
           onChange={handleOnChange}
           onKeyDown={handleKeyDown}
+          data-testid="message"
         />
-        <Button disabled={message.length < 1} type="submit" className="sendBtn">
+        <Button
+          disabled={message.length < 1}
+          type="submit"
+          className="sendBtn"
+          data-testid="sendMessageBtn"
+        >
           {t('send')}
         </Button>
       </form>

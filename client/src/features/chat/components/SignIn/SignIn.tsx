@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@blueprintjs/core';
 import { IoIosLogIn } from 'react-icons/io';
@@ -11,8 +12,9 @@ import useTranslation from '../../../../hooks/useTranslation';
 
 import styles from './SignIn.module.scss';
 
-const Login = ({ history }: any) => {
+const Login = ({ history, socket: initSocket }: any) => {
   const socket = useSelector(({ app }: any) => app.socket);
+  const user = useSelector(({ app }: any) => app.user);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [input, handleInputChange] = useInputChange();
@@ -42,18 +44,27 @@ const Login = ({ history }: any) => {
     e.preventDefault();
 
     const { user }: any = input;
+
+    if (!user) {
+      return;
+    }
+
     dispatch(
       chatOperations.verifyUser({ socket, user, callback: handleSetUser })
     );
   };
 
   useEffect(() => {
-    if (socket) {
+    if (socket || !initSocket) {
       return;
     }
 
-    dispatch(chatOperations.startSocket());
-  }, [dispatch, socket]);
+    dispatch(chatOperations.startSocket({ socket: initSocket }));
+  }, [dispatch, socket, initSocket]);
+
+  if (user) {
+    return <Redirect to={CHAT_PAGE} />;
+  }
 
   return (
     <div className={styles.login}>
@@ -62,6 +73,7 @@ const Login = ({ history }: any) => {
           disabled={!socket}
           aria-busy={!socket}
           className={styles.loginForm}
+          data-testid="fieldset"
         >
           <h3>{t('welcome')}</h3>
           <label htmlFor="user">
@@ -71,14 +83,20 @@ const Login = ({ history }: any) => {
               placeholder={t('username')}
               required
               onChange={handleInputChange as () => void}
+              data-testid="user"
             />
           </label>
-          {error && <div className={styles.error}>{error}</div>}
+          {error && (
+            <div className={styles.error} data-testid="errorMessageContainer">
+              {error}
+            </div>
+          )}
           <Button
             type="submit"
             className={styles.loginBtn}
             disabled={!socket}
             intent="success"
+            data-testid="signInBtn"
           >
             <IoIosLogIn />
             <span className={styles.loginBtnText}>{t('signIn')}</span>

@@ -6,7 +6,12 @@ import './NavigationItem.scss';
 
 const navigationItem = ({ link, exact, children }: Props) => (
   <li className="NavigationItem">
-    <NavLink to={link} exact={exact} activeClassName="active">
+    <NavLink
+      to={link}
+      exact={exact}
+      activeClassName="active"
+      data-testid={link}
+    >
       {children}
     </NavLink>
   </li>

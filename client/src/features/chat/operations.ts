@@ -1,5 +1,4 @@
 import { Dispatch } from 'redux';
-import io from 'socket.io-client';
 
 import {
   initSocket,
@@ -11,13 +10,14 @@ import {
   updateSettings,
   userReadMessages,
 } from './actions';
-import { SOCKET_URL } from '../../utilities/constants';
 import { chatActionNameTypes, Chat, User, ConnectedUsers } from './types';
 
-const startSocket = () => (dispatch: Dispatch) => {
-  try {
-    const socket = io(SOCKET_URL);
+interface StartSocket {
+  socket: any;
+}
 
+const startSocket = ({ socket }: StartSocket) => (dispatch: Dispatch) => {
+  try {
     socket.on('connect', () => {
       console.log('Connected');
     });
@@ -54,7 +54,9 @@ interface UserUpdated {
   userId: string;
 }
 
-const loginUser = ({ socket, user }: LoginUser) => (dispatch: Dispatch) => {
+const loginUser = async ({ socket, user }: LoginUser) => (
+  dispatch: Dispatch
+) => {
   try {
     socket.emit(chatActionNameTypes.USER_CONNECTED, user);
     dispatch(userConnected(user));
@@ -114,6 +116,8 @@ interface AddMessageToChat {
 }
 
 const addMessageToChat = ({ dispatch, activeChat }: AddMessageToChat) => {
+  // console.log('addMessageToChat');
+
   return (message: Chat) => {
     dispatch(messageReceived({ chat: message, reset: false, activeChat }));
     // dispatch(userReadMessages());
@@ -146,7 +150,9 @@ interface CommunityChat {
   socket: any;
 }
 
-const communityChat = ({ socket }: CommunityChat) => (dispatch: Dispatch) => {
+const communityChat = async ({ socket }: CommunityChat) => (
+  dispatch: Dispatch
+) => {
   try {
     socket.emit(
       chatActionNameTypes.COMMUNITY_CHAT,
@@ -187,7 +193,7 @@ interface SendTyping {
   formSubmitted?: boolean;
 }
 
-const sendTyping = ({
+const sendTyping = async ({
   chatId,
   socket,
   isTyping,
@@ -216,4 +222,5 @@ export {
   updateUser,
   updateSettings,
   userReadMessages,
+  addMessageToChat,
 };

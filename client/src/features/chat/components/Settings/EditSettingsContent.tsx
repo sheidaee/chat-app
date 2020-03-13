@@ -150,6 +150,7 @@ const EditSettingsContent: React.FC<PropsWithFormik> = ({
                     component={component}
                     captionClassName="formCaption"
                     dataClassName="formData"
+                    data-testid={name}
                     callback={callback}
                     formatNumber={formatNumber}
                     items={items}
