@@ -20,7 +20,7 @@
     "@types/react-transition-group": "^4.2.4",
     "@types/socket.io-client": "^1.4.32",
     "formik": "^2.1.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "node-sass": "^4.13.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
